@@ -1,10 +1,15 @@
-package com.example.taiprojekt.product;
+package com.example.taiprojekt.order;
 
+import com.example.taiprojekt.order.dtos.OrderRequest;
+import com.example.taiprojekt.order.dtos.OrderResponse;
+import com.example.taiprojekt.order.exceptions.OrderNotFoundException;
 import com.example.taiprojekt.product.dtos.ProductRequest;
 import com.example.taiprojekt.product.dtos.ProductResponse;
 import com.example.taiprojekt.product.exceptions.ProductNotFoundException;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,21 +21,21 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/products")
-public class ProductController {
+@RequestMapping("/api/orders")
+public class OrderController {
 
-    private final ProductService productService;
+    private final OrderService orderService;
 
     @GetMapping
-    public List<ProductResponse> getProductsPage() {
-        return productService.getAllProducts();
+    public List<OrderResponse> getOrders() {
+        return orderService.getAllOrders();
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<ProductResponse> getProduct(@PathVariable Long id) {
+    public ResponseEntity<OrderResponse> getOrder(@PathVariable Long id) {
         try {
-            ProductResponse productResponse = productService.getProduct(id);
-            return new ResponseEntity<>(productResponse, HttpStatus.OK);
+            OrderResponse orderResponse = orderService.getOrder(id);
+            return new ResponseEntity<>(orderResponse, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } catch (ProductNotFoundException e) {
@@ -39,16 +44,16 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductResponse> saveProduct(@Valid @RequestBody ProductRequest productRequest) {
+    public ResponseEntity<OrderResponse> saveOrder(@RequestBody OrderRequest orderRequest) {
         try {
-            ProductResponse productResponse = productService.saveProduct(productRequest);
+            OrderResponse orderResponse = orderService.saveOrder(orderRequest);
             URI location = ServletUriComponentsBuilder
                     .fromCurrentRequest()
                     .path("/{id}")
-                    .buildAndExpand(productResponse.getId())
+                    .buildAndExpand(orderResponse.getId())
                     .toUri();
-            return ResponseEntity.created(location).body(productResponse);
-        } catch (ProductNotFoundException e) {
+            return ResponseEntity.created(location).body(orderResponse);
+        } catch (ProductNotFoundException | OrderNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (NullPointerException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -56,9 +61,9 @@ public class ProductController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<ProductResponse> modifyProduct(@PathVariable Long id, @Valid @RequestBody ProductRequest productRequest) {
+    public ResponseEntity<OrderResponse> modifyOrder(@PathVariable Long id, @Valid @RequestBody OrderRequest orderRequest) {
         try {
-            ProductResponse productResponse = productService.modifyProduct(id, productRequest);
+            OrderResponse productResponse = orderService.modifyOrder(id, orderRequest);
             URI location = ServletUriComponentsBuilder
                     .fromCurrentRequest()
                     .path("/{id}")

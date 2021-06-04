@@ -23,6 +23,6 @@ public class OrderEntity {
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
     List<ProductEntity> products;
 }

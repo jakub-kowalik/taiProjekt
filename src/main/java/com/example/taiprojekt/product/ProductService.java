@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -19,17 +20,15 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     public List<ProductResponse> getAllProducts() {
-        List<ProductResponse> products = new ArrayList<>();
-        productRepository.findAll().forEach(x -> {
-            ProductResponse productResponse = ProductFactory.productEntityToResponse(x);
-            products.add(productResponse);
-        });
-        return products;
+        return productRepository.findAll()
+                .stream()
+                .map(ProductFactory::productEntityToResponse)
+                .collect(Collectors.toList());
     }
 
     public ProductResponse getProduct(Long id) {
         ProductEntity productEntity = productRepository.findById(id)
-                .orElseThrow(ProductNotFoundException::new);
+                .orElseThrow(() -> new ProductNotFoundException(id));
 
         return ProductFactory.productEntityToResponse(productEntity);
     }
@@ -40,5 +39,14 @@ public class ProductService {
                         ProductFactory.productRequestToEntity(productRequest)
                 )
         );
+    }
+
+    public ProductResponse modifyProduct(Long productId, ProductRequest productRequest) {
+        ProductEntity productEntity = productRepository.findById(productId)
+                .orElseThrow(() -> new ProductNotFoundException(productId));
+
+        productEntity.setName(productRequest.getName());
+
+        return ProductFactory.productEntityToResponse(productRepository.save(productEntity));
     }
 }
