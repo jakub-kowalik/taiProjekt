@@ -1,14 +1,12 @@
 package com.example.taiprojekt.order;
 
+import com.example.taiprojekt.entities.OrderEntity;
 import com.example.taiprojekt.order.dtos.OrderFactory;
 import com.example.taiprojekt.order.dtos.OrderRequest;
 import com.example.taiprojekt.order.dtos.OrderResponse;
 import com.example.taiprojekt.order.exceptions.OrderNotFoundException;
-import com.example.taiprojekt.product.ProductEntity;
+import com.example.taiprojekt.entities.ProductEntity;
 import com.example.taiprojekt.product.ProductRepository;
-import com.example.taiprojekt.product.dtos.ProductFactory;
-import com.example.taiprojekt.product.dtos.ProductRequest;
-import com.example.taiprojekt.product.dtos.ProductResponse;
 import com.example.taiprojekt.product.exceptions.ProductNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -39,7 +37,7 @@ public class OrderService {
     }
 
     public OrderResponse saveOrder(OrderRequest orderRequest) {
-        OrderEntity orderEntity = new OrderEntity.OrderEntityBuilder()
+        OrderEntity orderEntity = OrderEntity.builder()
                 .name(orderRequest.getName())
                 .build();
 

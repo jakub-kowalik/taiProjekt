@@ -1,4 +1,4 @@
-package com.example.taiprojekt.product;
+package com.example.taiprojekt.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

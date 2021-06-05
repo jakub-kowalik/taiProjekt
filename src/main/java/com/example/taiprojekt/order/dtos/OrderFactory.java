@@ -1,6 +1,6 @@
 package com.example.taiprojekt.order.dtos;
 
-import com.example.taiprojekt.order.OrderEntity;
+import com.example.taiprojekt.entities.OrderEntity;
 import com.example.taiprojekt.product.dtos.ProductFactory;
 
 import java.util.stream.Collectors;

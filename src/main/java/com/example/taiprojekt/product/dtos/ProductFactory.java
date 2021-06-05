@@ -1,6 +1,6 @@
 package com.example.taiprojekt.product.dtos;
 
-import com.example.taiprojekt.product.ProductEntity;
+import com.example.taiprojekt.entities.ProductEntity;
 
 import lombok.RequiredArgsConstructor;
 

@@ -1,6 +1,5 @@
-package com.example.taiprojekt.order;
+package com.example.taiprojekt.entities;
 
-import com.example.taiprojekt.product.ProductEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

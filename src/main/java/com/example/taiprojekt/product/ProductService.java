@@ -1,5 +1,6 @@
 package com.example.taiprojekt.product;
 
+import com.example.taiprojekt.entities.ProductEntity;
 import com.example.taiprojekt.product.dtos.ProductFactory;
 import com.example.taiprojekt.product.dtos.ProductRequest;
 import com.example.taiprojekt.product.dtos.ProductResponse;
@@ -9,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

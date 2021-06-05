@@ -1,5 +1,6 @@
 package com.example.taiprojekt.product;
 
+import com.example.taiprojekt.entities.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
