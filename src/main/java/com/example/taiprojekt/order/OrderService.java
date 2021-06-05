@@ -70,4 +70,8 @@ public class OrderService {
 
         return OrderFactory.orderEntityToResponse(orderRepository.save(orderEntity));
     }
+
+    public void deleteOrder(Long id) {
+        orderRepository.deleteById(id);
+    }
 }

@@ -22,6 +22,6 @@ public class OrderEntity {
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     List<ProductEntity> products;
 }
