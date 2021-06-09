@@ -6,21 +6,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "order")
-public class OrderEntity {
+@Entity(name = "lineitem")
+public class LineItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    long id;
 
-    private String name;
+    int quantity;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    List<LineItemEntity> products;
+    @ManyToOne
+    OrderEntity order;
+
+    @ManyToOne
+    ProductEntity product;
 }

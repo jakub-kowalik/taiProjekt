@@ -1,6 +1,7 @@
 package com.example.taiprojekt.order.dtos;
 
 import com.example.taiprojekt.entities.OrderEntity;
+import com.example.taiprojekt.lineitem.LineItemFactory;
 import com.example.taiprojekt.product.dtos.ProductFactory;
 
 import java.util.stream.Collectors;
@@ -17,7 +18,7 @@ public class OrderFactory {
                 .name(orderEntity.getName())
                 .products(orderEntity.getProducts()
                                 .stream()
-                                .map(ProductFactory::productEntityToResponse)
+                                .map(LineItemFactory::lineItemToResponse)
                                 .collect(Collectors.toList()))
                 .build();
     }

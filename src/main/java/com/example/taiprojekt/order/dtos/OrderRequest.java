@@ -1,5 +1,6 @@
 package com.example.taiprojekt.order.dtos;
 
+import com.example.taiprojekt.lineitem.LineItemRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,5 +17,5 @@ public class OrderRequest {
     @NotNull
     String name;
 
-    List<Long> productIds;
+    List<LineItemRequest> product;
 }

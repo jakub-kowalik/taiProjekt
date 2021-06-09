@@ -1,20 +1,18 @@
-package com.example.taiprojekt.order.dtos;
+package com.example.taiprojekt.lineitem;
 
-import com.example.taiprojekt.lineitem.LineItemResponse;
 import com.example.taiprojekt.product.dtos.ProductResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderResponse {
-    Long id;
-    String name;
-    List<LineItemResponse> products;
+public class LineItemResponse {
+
+        private long id;
+        private ProductResponse product;
+        private int quantity;
 }
