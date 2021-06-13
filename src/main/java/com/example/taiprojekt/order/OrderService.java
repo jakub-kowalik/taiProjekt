@@ -2,7 +2,7 @@ package com.example.taiprojekt.order;
 
 import com.example.taiprojekt.entities.LineItemEntity;
 import com.example.taiprojekt.entities.OrderEntity;
-import com.example.taiprojekt.lineitem.LineItemRequest;
+import com.example.taiprojekt.lineitem.dtos.LineItemRequest;
 import com.example.taiprojekt.lineitem.LineItemService;
 import com.example.taiprojekt.order.dtos.OrderFactory;
 import com.example.taiprojekt.order.dtos.OrderRequest;
@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -44,6 +45,7 @@ public class OrderService {
     public OrderResponse saveOrder(OrderRequest orderRequest) {
         OrderEntity orderEntity = OrderEntity.builder()
                 .name(orderRequest.getName())
+                .date(Instant.now())
                 .build();
 
         List<LineItemEntity> productEntities = new ArrayList<>();
@@ -87,6 +89,8 @@ public class OrderService {
 
             orderEntity.setProducts(productEntities);
         }
+
+        orderEntity.setName(orderRequest.getName());
 
         return OrderFactory.orderEntityToResponse(orderRepository.save(orderEntity));
     }

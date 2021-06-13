@@ -1,6 +1,6 @@
 package com.example.taiprojekt.order.dtos;
 
-import com.example.taiprojekt.lineitem.LineItemRequest;
+import com.example.taiprojekt.lineitem.dtos.LineItemRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

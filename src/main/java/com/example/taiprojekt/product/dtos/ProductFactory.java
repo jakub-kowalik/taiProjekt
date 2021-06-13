@@ -13,6 +13,7 @@ public class ProductFactory {
     public static ProductEntity productRequestToEntity(ProductRequest productRequest) {
         return ProductEntity.builder()
                 .name(productRequest.getName())
+                .price(productRequest.getPrice())
                 .build();
     }
 
@@ -20,6 +21,7 @@ public class ProductFactory {
         return ProductResponse.builder()
                 .id(productEntity.getId())
                 .name(productEntity.getName())
+                .price(productEntity.getPrice())
                 .build();
     }
 }

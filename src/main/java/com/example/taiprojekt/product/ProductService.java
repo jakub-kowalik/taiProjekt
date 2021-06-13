@@ -46,6 +46,7 @@ public class ProductService {
                 .orElseThrow(() -> new ProductNotFoundException(productId));
 
         productEntity.setName(productRequest.getName());
+        productEntity.setPrice(productRequest.getPrice());
 
         return ProductFactory.productEntityToResponse(productRepository.save(productEntity));
     }

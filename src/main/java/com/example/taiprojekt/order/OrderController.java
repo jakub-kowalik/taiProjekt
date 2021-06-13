@@ -15,12 +15,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
+@CrossOrigin
 @RequestMapping("/api/orders")
 public class OrderController {
 

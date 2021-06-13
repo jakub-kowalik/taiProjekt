@@ -1,6 +1,7 @@
-package com.example.taiprojekt.lineitem;
+package com.example.taiprojekt.lineitem.dtos;
 
 import com.example.taiprojekt.entities.LineItemEntity;
+import com.example.taiprojekt.lineitem.dtos.LineItemResponse;
 import com.example.taiprojekt.product.dtos.ProductFactory;
 
 public class LineItemFactory {

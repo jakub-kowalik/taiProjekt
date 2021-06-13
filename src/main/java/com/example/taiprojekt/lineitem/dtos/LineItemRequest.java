@@ -1,4 +1,4 @@
-package com.example.taiprojekt.lineitem;
+package com.example.taiprojekt.lineitem.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
